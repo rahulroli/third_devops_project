@@ -41,5 +41,11 @@ stage('Push Image') {
     }
 }
         
+post {
+    always {
+        bat 'docker logout'
+    }
+}
+        
     }
 }
