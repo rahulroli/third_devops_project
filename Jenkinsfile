@@ -29,7 +29,7 @@ pipeline {
     steps {
         withCredentials([string(credentialsId: 'dockerhub_cred', variable: 'samindocker')]) {
             script {
-                bat "docker login -u rahuldubey1993 -p %samindocker%"
+                sh "docker login -u rahuldubey1993 -p %samindocker%"
             }
         }
     }
@@ -37,7 +37,7 @@ pipeline {
 
 stage('Push Image') {
     steps {
-        bat 'docker push rahuldubey1993/rahul_docker_reop:third-devops-project'
+        sh 'docker push rahuldubey1993/rahul_docker_reop:third-devops-project'
     }
 }
         
