@@ -24,5 +24,22 @@ pipeline {
                 }
             }
         }
+        
+       stage('Login to Docker Hub') {
+    steps {
+        withCredentials([string(credentialsId: 'dockerhub_cred', variable: 'samindocker')]) {
+            script {
+                bat "docker login -u rahuldubey1993 -p %samindocker%"
+            }
+        }
+    }
+}
+
+stage('Push Image') {
+    steps {
+        bat 'docker push rahuldubey1993/rahul_docker_reop:%BUILD_NUMBER%'
+    }
+}
+        
     }
 }
