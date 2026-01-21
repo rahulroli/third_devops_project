@@ -11,7 +11,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("third-devops-project:latest")
+                    sh 'docker build -t third-devops-project:latest .'
                  
                 }
             }
@@ -20,7 +20,7 @@ pipeline {
         stage('Run Container') {
             steps {
                 script {
-                    docker.image("third-devops-project:latest").run("-p 9080:80")
+                    sh 'docker run -d -p 9080:80 third-devops-project:latest'
                 }
             }
         }
