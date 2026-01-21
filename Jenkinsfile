@@ -11,7 +11,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t third-devops-project:latest .'
+                    sh 'docker build -t third-devops-project .'
                  
                 }
             }
@@ -20,7 +20,7 @@ pipeline {
         stage('Run Container') {
             steps {
                 script {
-                    sh 'docker run -d -p 9080:80 third-devops-project:latest'
+                    sh 'docker run -d -p 9080:80 third-devops-project'
                 }
             }
         }
@@ -37,7 +37,7 @@ pipeline {
 
 stage('Push Image') {
     steps {
-        bat 'docker push rahuldubey1993/rahul_docker_reop:%BUILD_NUMBER%'
+        bat 'docker push rahuldubey1993/rahul_docker_reop:third-devops-project'
     }
 }
         
